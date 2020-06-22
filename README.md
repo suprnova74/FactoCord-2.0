@@ -6,10 +6,14 @@
 # Running
 *Make sure you have your .env file in the same directory as the executable/binary, you can use .envexample the template*
 
+For those unfamiliar with linux, files starting with "." are hidden. 
+
 There are two ways of starting FactoCord
 
 1. Using the start.sh bash script (bash start.sh or ./start.sh) (make sure you chmod +x the script first)
 2. Manually running the binary (./FactoCord) Note: File must be in CamelCase... 
+
+The script leverages screen.  You can attach to the actual Factorio instance leveraging that tool.
 
 # Installing as a service
 
