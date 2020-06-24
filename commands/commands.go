@@ -2,7 +2,6 @@ package commands
 
 import (
 	"strings"
-
 	"./admin"
 	"./utils"
 	"../support"
@@ -30,6 +29,7 @@ var CL Commands
 
 // RegisterCommands registers the commands on start up.
 func RegisterCommands() {
+	support.Config.LoadEnv()
 	// Admin Commands
 	CL.CommandList = append(CL.CommandList, Command{Name: "Stop", Command: admin.StopServer,
 		Admin: true, Args:0, Desc: "Save the game and stop the factorio server."})
@@ -51,6 +51,7 @@ func RegisterCommands() {
 }
 
 func commandListEmbed() *discordgo.MessageEmbed {
+
 	fields := []*discordgo.MessageEmbedField{}
 	for _, command := range CL.CommandList {
 		strAdmin := ""
@@ -58,9 +59,9 @@ func commandListEmbed() *discordgo.MessageEmbed {
 			strAdmin = " - Admin Only!"
 		}
 		fields = append(fields, &discordgo.MessageEmbedField{
-			Name: "!"+ command.Name,
+			Name: support.Config.Prefix + command.Name, //Suprnova74: changed hard-coded reference for "!" to that in the .env file for the Prefix
 			Value: command.Desc + strAdmin,
-		})
+			})
 	}
 	embed := &discordgo.MessageEmbed{
 		Type:  "rich",
@@ -69,11 +70,13 @@ func commandListEmbed() *discordgo.MessageEmbed {
 		Title:  "FactoCord Commands",
 		Fields: fields,
 	}
-	return embed
+return embed
+	
 }
 
 // RunCommand runs a specified command.
 func RunCommand(input string, s *discordgo.Session, m *discordgo.MessageCreate) {
+//	support.Config.LoadEnv()
 	inputvars := strings.SplitN(input, " ", 3)
 	for _, command := range CL.CommandList {
 		if strings.ToLower(command.Name) == strings.ToLower("List") {

@@ -141,26 +141,49 @@ func discord() {
 	bot.Close()
 }
 
-func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
-	log.Print("[" + m.Author.Username + "] " + m.Content)
 
+func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
+//Suprova74: Needed in case it's a smoogle translation	
+	var SmoogName string = ""
+	var SmoogMsg string = ""
+	
+
+//Stop bot from responding to itself
 	if m.Author.ID == s.State.User.ID {
 		return
+	}
+//fmt.Println(m.Content)
+//Suprnova74:  Need to ensure this is below the check if the message is from the bot or else bad things can happen
+	if len(m.Embeds) > 0 {  //embedded message, should be a smoogle, let's get the original author and translation into variables
+	SmoogName = m.Embeds[0].Author.Name    
+	SmoogMsg = m.Embeds[0].Description
+	log.Print ("[" + SmoogName + "] " + SmoogMsg)
+	} else {
+		log.Print("[" + m.Author.Username + "] " + m.Content)
 	}
 
 	if m.ChannelID == support.Config.FactorioChannelID {
 		if strings.HasPrefix(m.Content, support.Config.Prefix) {
 			//command := strings.Split(m.Content[1:len(m.Content)], " ")
 			//name := strings.ToLower(command[0])
-			input := strings.Replace(m.Content, "!", "", -1)
+			fmt.Println (m.Content)
+			input := strings.Replace(m.Content, support.Config.Prefix, "", -1)
 			commands.RunCommand(input, s, m)
 			return
 		}
 		// Pipes normal chat allowing it to be seen ingame
+		if len(m.Embeds) > 0 {
+		_, err := io.WriteString(Pipe, fmt.Sprintf("[Discord] <%s>: %s\r\n", SmoogName, SmoogMsg))  
+			if err != nil {
+			support.ErrorLog(fmt.Errorf("%s: An error occurred when attempting to pass Discord chat to in-game\nDetails: %s", time.Now(), err))
+			}
+		} else {
 		_, err := io.WriteString(Pipe, fmt.Sprintf("[Discord] <%s>: %s\r\n", m.Author.Username, m.ContentWithMentionsReplaced()))
 		if err != nil {
 			support.ErrorLog(fmt.Errorf("%s: An error occurred when attempting to pass Discord chat to in-game\nDetails: %s", time.Now(), err))
+			}
 		}
+
 		return
 	}
 }
