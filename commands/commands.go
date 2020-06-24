@@ -8,7 +8,7 @@ import (
 	"github.com/bwmarrin/discordgo"
 )
 
-// Commands is a struct containing a slice of Command.
+//  Commands is a struct containing a slice of Command.
 type Commands struct {
 	CommandList []Command
 }
