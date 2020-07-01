@@ -52,6 +52,10 @@ If you are having an issue make sure to check the error.log to see what the prob
 
 If you are unable to solve the issue yourself, please post an issue containing the error.log and I will review and attempt to solve what the problem is.
 
+# Update-Log
+
+Added rudimentary translator function.  It will take any translation from Smoogle bot sent to the server's channel and send it to in-game.   In-game requests for translations are currently not possible via this method.
+
 
 # Screenshots
 
@@ -61,3 +65,5 @@ If you are unable to solve the issue yourself, please post an issue containing t
 
 
 Special thanks again to FMCore for creating the initial FactoCord project. https://github.com/FactoKit/FactoCord
+
+
