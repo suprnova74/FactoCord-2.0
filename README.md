@@ -54,7 +54,7 @@ If you are unable to solve the issue yourself, please post an issue containing t
 
 # Update-Log
 
-Added rudimentary translator function.  It will take any translation from Smoogle bot sent to the server's channel and send it to in-game.   In-game requests for translations are currently not possible via this method.
+Added rudimentary translator function.  It will take any translation from Smoogle bot sent to the server's channel and send it to in-game.   In-game requests for translations are currently not possible via this method as Smoogle ignores any bot output.
 
 
 # Screenshots
