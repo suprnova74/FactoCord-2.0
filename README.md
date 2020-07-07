@@ -35,13 +35,20 @@ FactoCord uses the following packages:
 - [godotenv](https://github.com/joho/godotenv/)
 - [tails](https://github.com/hpcloud/tail)
 
-You will need to add these lib as go get:
+You will need to add these lib as go get (most likely as root or sudo):
 
 - `go get github.com/bwmarrin/discordgo`
 - `go get github.com/joho/godotenv`
 - `go get github.com/hpcloud/tail/...`
 
-To compile just do `go build`
+To compile:
+ensure the local copy is a git initialized.  For Linux I do :
+`git clone https://github.com/suprnova74/FactoCord-2.0 FactoCord`
+`git init FactoCord`
+
+and then run `go build`
+
+to grab the appropriate version information, the local repository needs to be git initialized or build will fail.
 
 
 # Error reporting
@@ -55,6 +62,7 @@ If you are unable to solve the issue yourself, please post an issue containing t
 # Update-Log
 
 Added rudimentary translator function.  It will take any translation from Smoogle bot sent to the server's channel and send it to in-game.   In-game requests for translations are currently not possible via this method as Smoogle ignores any bot output.
+Merged many features from credomane / FactoCord fork
 
 
 # Screenshots
