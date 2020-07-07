@@ -44,6 +44,7 @@ You will need to add these lib as go get (most likely as root or sudo):
 To compile:
 ensure the local copy is a git initialized.  For Linux I do :
 `git clone https://github.com/suprnova74/FactoCord-2.0 FactoCord`
+
 `git init FactoCord`
 
 and then run `go build`
