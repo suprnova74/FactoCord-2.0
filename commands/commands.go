@@ -26,6 +26,7 @@ type Command struct {
 
 // CL is a Commands interface.
 var CL Commands
+var Version string
 
 // RegisterCommands registers the commands on start up.
 func RegisterCommands() {
