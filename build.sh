@@ -15,4 +15,4 @@ func getFactoCordVersion() (string, string) {
 }
 EOF
 
-go build -o ./FactoCord main.go version.go
+go build -o ./FactoCord-2.0 main.go version.go
