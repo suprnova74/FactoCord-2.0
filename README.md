@@ -47,7 +47,7 @@ ensure the local copy is a git initialized.  For Linux I do :
 
 `git init FactoCord`
 
-and then run `go build`
+and then run `sudo .\build.sh`
 
 to grab the appropriate version information, the local repository needs to be git initialized or build will fail.
 
